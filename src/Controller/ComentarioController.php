@@ -13,8 +13,7 @@ class ComentarioController extends AbstractController
     public function index(): Response
     {
         //Prueba de entidades y relaciones
-        $em = $this->getDoctrine()->getManager();
-
+        //$em = $this->getDoctrine()->getManager();
         /*
         $comentario_repo = $this->getDoctrine()->getRepository(Comentario::class);
         $comentarios = $comentario_repo->findAll();
@@ -24,7 +23,14 @@ class ComentarioController extends AbstractController
             echo $comentario->getCoidusuariofk()->getUusuario().' : '.$comentario->getCocomentario()."<br/>";
         }
         */
-        $task_repo = $this->getDoctrine()->getRepository(Comentario::class);
+    
+
+        return $this->render('comentario/index.html.twig', [
+            'controller_name' => 'ComentarioController',
+        ]);
+    }
+    public function listarUsuariosComentarios(){
+        $em = $this->getDoctrine()->getManager();
         $usuario_repo = $this->getDoctrine()->getRepository(Usuario::class);
         $usuarios = $usuario_repo->findAll();
 
@@ -34,11 +40,24 @@ class ComentarioController extends AbstractController
             echo "<h1>{$usuario->getUnombre()} {$usuario->getUapellidos()}</h1>";
 
             //Optenemos los comentarios del usuario
-            foreach ($usuario->getComentarios2() as $comentario){
+            foreach ($usuario->getComentarios() as $comentario){
                 echo $comentario->getCocomentario()."<br/>";  
             }
         }
+        return $this->render('comentario/index.html.twig', [
+            'controller_name' => 'ComentarioController',
+        ]);
+    }
+    public function listarUsuarios(){
+        $em = $this->getDoctrine()->getManager();
+        $usuario_repo = $this->getDoctrine()->getRepository(Usuario::class);
+        $usuarios = $usuario_repo->findAll();
 
+        //Recorremos los usuarios
+        foreach ($usuarios as $usuario){
+            //Obtenemos el nombre del usuario que ha echo el comentario a travez de su id y lo imprimimos junto a su comentario
+            echo "<h1>{$usuario->getUnombre()} {$usuario->getUapellidos()}</h1>";
+        }
         return $this->render('comentario/index.html.twig', [
             'controller_name' => 'ComentarioController',
         ]);

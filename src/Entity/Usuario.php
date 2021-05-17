@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Usuario
  *
- * @ORM\Table(name="Usuarios")
+ * @ORM\Table(name="usuarios")
  * @ORM\Entity
  */
 class Usuario
@@ -23,11 +23,32 @@ class Usuario
     private $uid;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="uRole", type="integer", nullable=true)
+     */
+    private $urole;
+
+    /**
      * @var string|null
      *
-     * @ORM\Column(name="uUsuario", type="string", length=45, nullable=true)
+     * @ORM\Column(name="uNombre", type="string", length=100, nullable=true)
      */
-    private $uusuario;
+    private $unombre;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="uApellidos", type="string", length=200, nullable=true)
+     */
+    private $uapellidos;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="uEmail", type="string", length=255, nullable=true)
+     */
+    private $uemail;
 
     /**
      * @var string|null
@@ -35,27 +56,6 @@ class Usuario
      * @ORM\Column(name="uPassword", type="string", length=255, nullable=true)
      */
     private $upassword;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="uNombre", type="string", length=45, nullable=true)
-     */
-    private $unombre;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="uApellidos", type="string", length=150, nullable=true)
-     */
-    private $uapellidos;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="uEmail", type="string", length=45, nullable=true)
-     */
-    private $uemail;
 
     /**
      * @var int|null
@@ -67,9 +67,23 @@ class Usuario
     /**
      * @var string|null
      *
-     * @ORM\Column(name="uDireccion", type="string", length=45, nullable=true)
+     * @ORM\Column(name="uDireccion", type="string", length=255, nullable=true)
      */
     private $udireccion;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="uCreated_at", type="datetime", nullable=true)
+     */
+    private $ucreatedAt;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="uDelete_at", type="datetime", nullable=true)
+     */
+    private $udeleteAt;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="coidusuariofk")
@@ -85,26 +99,14 @@ class Usuario
         return $this->uid;
     }
 
-    public function getUusuario(): ?string
+    public function getUrole(): ?int
     {
-        return $this->uusuario;
+        return $this->urole;
     }
 
-    public function setUusuario(?string $uusuario): self
+    public function setUrole(?int $urole): self
     {
-        $this->uusuario = $uusuario;
-
-        return $this;
-    }
-
-    public function getUpassword(): ?string
-    {
-        return $this->upassword;
-    }
-
-    public function setUpassword(?string $upassword): self
-    {
-        $this->upassword = $upassword;
+        $this->urole = $urole;
 
         return $this;
     }
@@ -145,6 +147,18 @@ class Usuario
         return $this;
     }
 
+    public function getUpassword(): ?string
+    {
+        return $this->upassword;
+    }
+
+    public function setUpassword(?string $upassword): self
+    {
+        $this->upassword = $upassword;
+
+        return $this;
+    }
+
     public function getUtelefono(): ?int
     {
         return $this->utelefono;
@@ -168,11 +182,59 @@ class Usuario
 
         return $this;
     }
+
+    public function getUcreatedAt(): ?\DateTimeInterface
+    {
+        return $this->ucreatedAt;
+    }
+
+    public function setUcreatedAt(?\DateTimeInterface $ucreatedAt): self
+    {
+        $this->ucreatedAt = $ucreatedAt;
+
+        return $this;
+    }
+
+    public function getUdeleteAt(): ?\DateTimeInterface
+    {
+        return $this->udeleteAt;
+    }
+
+    public function setUdeleteAt(?\DateTimeInterface $udeleteAt): self
+    {
+        $this->udeleteAt = $udeleteAt;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Comentario[]
      */
-    public function getComentarios2()
+    public function getComentarios(): Collection
     {
         return $this->comentarios;
     }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setCoidusuariofk($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->removeElement($comentario)) {
+            // set the owning side to null (unless already changed)
+            if ($comentario->getCoidusuariofk() === $this) {
+                $comentario->setCoidusuariofk(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

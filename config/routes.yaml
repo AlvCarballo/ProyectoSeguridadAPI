@@ -5,6 +5,6 @@
 Comentario:
   path: /comentario
   controller: App\Controller\ComentarioController::index
-Usuario:
-  path: /usuario
-  controller: App\Controller\UsuarioController::index
+Register:
+  path: /registro
+  controller: App\Controller\UsuarioController::register

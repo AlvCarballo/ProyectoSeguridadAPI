@@ -8,13 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UsuarioController extends AbstractController
 {
-    /**
-     * @Route("/usuario", name="usuario")
-     */
-    public function index(): Response
+    public function register()
     {
-        return $this->render('usuario/index.html.twig', [
-            'controller_name' => 'UsuarioController',
+        return $this->render('usuario/register.html.twig', [
         ]);
     }
 }
