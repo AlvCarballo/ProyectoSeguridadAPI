@@ -1,0 +1,10 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+Comentario:
+  path: /comentario
+  controller: App\Controller\ComentarioController::index
+Usuario:
+  path: /usuario
+  controller: App\Controller\UsuarioController::index
