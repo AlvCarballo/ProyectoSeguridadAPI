@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Usuario
  *
- * @ORM\Table(name="usuarios")
+ * @ORM\Table(name="Usuarios")
  * @ORM\Entity
  */
 class Usuario
@@ -72,7 +72,7 @@ class Usuario
     private $udireccion;
 
     /**
-     * @ORM\OneToMany (targetEntity="App\Entity\Comentario", mappedBy="Usuario")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="coidusuariofk")
      */
     private $comentarios;
 
@@ -169,10 +169,10 @@ class Usuario
         return $this;
     }
     /**
-     * @return Collection|comentario[]
+     * @return Collection|Comentario[]
      */
-    public function getComentarios():Collection
+    public function getComentarios2()
     {
-        return $this->Comentarios;
+        return $this->comentarios;
     }
 }
