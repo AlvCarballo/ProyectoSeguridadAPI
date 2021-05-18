@@ -160,6 +160,17 @@ class Usuario implements UserInterface
 
         return $this;
     }
+    public function getPassword(): ?string
+    {
+        return $this->upassword;
+    }
+
+    public function setPassword(?string $upassword): self
+    {
+        $this->upassword = $upassword;
+
+        return $this;
+    }
 
     public function getUtelefono(): ?int
     {
@@ -217,26 +228,17 @@ class Usuario implements UserInterface
         return $this->comentarios;
     }
 
-    public function addComentario(Comentario $comentario): self
-    {
-        if (!$this->comentarios->contains($comentario)) {
-            $this->comentarios[] = $comentario;
-            $comentario->setCoidusuariofk($this);
-        }
+    public function getUsername(){
+		return $this->email;
+	}
 
-        return $this;
-    }
+    public function getRoles(){
+		return array(2);
+	}
+    public function getSalt(){
+		return null;
+	}
+    public function eraseCredentials(){}
 
-    public function removeComentario(Comentario $comentario): self
-    {
-        if ($this->comentarios->removeElement($comentario)) {
-            // set the owning side to null (unless already changed)
-            if ($comentario->getCoidusuariofk() === $this) {
-                $comentario->setCoidusuariofk(null);
-            }
-        }
-
-        return $this;
-    }
 
 }

@@ -26,12 +26,12 @@ class UsuarioController extends AbstractController
 		// Comprobar si el form se ha enviado
 		if($form->isSubmitted() && $form->isValid()){
 			// Modificando el objeto para guardarlo
-			$usuario->uSetRole(2);
-			$usuario->uSetCreatedAt(new \Datetime('now'));
-            $usuario->uSetDeleteAt(new \Datetime('1900-01-01 00:00:00'));
+			$usuario->SetUrole(2);
+			$usuario->SetUcreatedAt(new \Datetime('now'));
+            $usuario->SetUdeleteAt(new \Datetime('1900-01-01 00:00:00'));
 			
 			// Cifrar contraseña
-			$encoded = $encoder->encodePassword($usuario, $usuario->getPassword());
+			$encoded = $encoder->encodePassword($usuario, $usuario->getUpassword());
 			$usuario->setPassword($encoded);
 			
 			// Guardar usuario
@@ -39,7 +39,8 @@ class UsuarioController extends AbstractController
 			$em->persist($usuario);
 			$em->flush();
 			
-			return $this->redirectToRoute('tasks');
+			//Redirige a otra web de routes
+			//return $this->redirectToRoute('Comentario');
 		}
 		
 		
