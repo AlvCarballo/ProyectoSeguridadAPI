@@ -42,6 +42,9 @@ class Usuario implements UserInterface
      * @var string|null
      *
      * @ORM\Column(name="uApellidos", type="string", length=200, nullable=true)
+     * @Assert\NotBlank
+	 * @Assert\Regex("/[a-zA-Z ]+/")
+     * 
      */
     private $uapellidos;
 
@@ -49,6 +52,8 @@ class Usuario implements UserInterface
      * @var string|null
      *
      * @ORM\Column(name="uEmail", type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+	 * @Assert\Regex("/[a-zA-Z ]+/")
      */
     private $uemail;
 
@@ -56,6 +61,11 @@ class Usuario implements UserInterface
      * @var string|null
      *
      * @ORM\Column(name="uPassword", type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+	 * @Assert\Email(
+	 *		message = "El email '{{ value }}' no es valido",
+	 *		checkMX = true
+	 * )
      */
     private $upassword;
 
@@ -63,6 +73,7 @@ class Usuario implements UserInterface
      * @var int|null
      *
      * @ORM\Column(name="uTelefono", type="integer", nullable=true)
+     * @Assert\NotBlank
      */
     private $utelefono;
 
