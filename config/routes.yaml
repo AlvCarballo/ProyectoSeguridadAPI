@@ -3,8 +3,16 @@
 #    controller: App\Controller\DefaultController::index
 
 Comentario:
-  path: /comentario
+  path: /
   controller: App\Controller\ComentarioController::index
+
 Register:
   path: /registro
   controller: App\Controller\UsuarioController::register
+
+Login:
+  path: /login
+  controller: App\Controller\UsuarioController::login
+
+Logout:
+  path: /logout

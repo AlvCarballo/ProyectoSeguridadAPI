@@ -62,10 +62,7 @@ class Usuario implements UserInterface
      *
      * @ORM\Column(name="uPassword", type="string", length=255, nullable=true)
      * @Assert\NotBlank
-	 * @Assert\Email(
-	 *		message = "El email '{{ value }}' no es valido",
-	 *		checkMX = true
-	 * )
+	 * 
      */
     private $upassword;
 
@@ -240,7 +237,7 @@ class Usuario implements UserInterface
     }
 
     public function getUsername(){
-		return $this->email;
+		return $this->uemail;
 	}
 
     public function getRoles(){
