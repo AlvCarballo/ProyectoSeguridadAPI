@@ -247,6 +247,5 @@ class Usuario implements UserInterface
 		return null;
 	}
     public function eraseCredentials(){}
-
-
+    
 }

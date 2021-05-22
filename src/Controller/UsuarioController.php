@@ -42,8 +42,6 @@ class UsuarioController extends AbstractController
 			//Redirige a otra web de routes
 			//return $this->redirectToRoute('Comentario');
 		}
-		
-		
         return $this->render('usuario/register.html.twig', [
 			'form' => $form->createView()
         ]);

@@ -6,6 +6,10 @@ Comentario:
   path: /
   controller: App\Controller\ComentarioController::index
 
+Comentario_detail:
+  path: /comentario/{coid}
+  controller: App\Controller\ComentarioController::detail
+
 Register:
   path: /registro
   controller: App\Controller\UsuarioController::register

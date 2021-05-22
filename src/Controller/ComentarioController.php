@@ -13,10 +13,11 @@ class ComentarioController extends AbstractController
     public function index(): Response
     {
         //Prueba de entidades y relaciones
-        //$em = $this->getDoctrine()->getManager();
-        /*
+        $em = $this->getDoctrine()->getManager();
+       
         $comentario_repo = $this->getDoctrine()->getRepository(Comentario::class);
         $comentarios = $comentario_repo->findAll();
+        /*
         //Recorremos todos los comentarios y lo guardamos en comentario
         foreach ($comentarios as $comentario){
             //Obtenemos el nombre del usuario que ha echo el comentario a travez de su id y lo imprimimos junto a su comentario
@@ -26,7 +27,7 @@ class ComentarioController extends AbstractController
     
 
         return $this->render('comentario/index.html.twig', [
-            'controller_name' => 'ComentarioController',
+            'comentarios' => $comentarios,
         ]);
     }
     public function listarUsuariosComentarios(){
@@ -62,4 +63,84 @@ class ComentarioController extends AbstractController
             'controller_name' => 'ComentarioController',
         ]);
     }
+    public function detail(Comentario $comentario){
+		if(!$comentario){
+			return $this->redirectToRout('comentarios');
+		}
+		
+		return $this->render('comentario/detail.html.twig',[
+			'comentario' => $comentario
+		]);
+	}
+//     public function creation(Request $request, UserInterface $user){
+// 		$task = new Task();
+// 		$form = $this->createForm(TaskType::class, $task);
+		
+// 		$form->handleRequest($request);
+		
+// 		if($form->isSubmitted() && $form->isValid()){
+// 			$task->setCreatedAt(new \Datetime('now'));
+// 			$task->setUser($user);
+			
+// 			$em = $this->getDoctrine()->getManager();
+// 			$em->persist($task);
+// 			$em->flush();
+			
+// 			return $this->redirect($this->generateUrl('task_detail', ['id' => $task->getId()]));
+// 		}
+		
+// 		return $this->render('task/creation.html.twig',[
+// 			'form' => $form->createView()
+// 		]);
+// 	}
+	
+// 	public function myTasks(UserInterface $user){
+// 		$tasks = $user->getTasks();
+				
+// 		return $this->render('task/my-tasks.html.twig',[
+// 			'tasks' => $tasks 
+// 		]);	
+// 	}
+	
+// 	public function edit(Request $request, UserInterface $user, Task $task){
+// 		if(!$user || $user->getId() != $task->getUser()->getId()){
+// 			return $this->redirectToRoute('tasks');
+// 		}
+		
+// 		$form = $this->createForm(TaskType::class, $task);
+		
+// 		$form->handleRequest($request);
+		
+// 		if($form->isSubmitted() && $form->isValid()){
+// 			//$task->setCreatedAt(new \Datetime('now'));
+// 			//$task->setUser($user);
+			
+// 			$em = $this->getDoctrine()->getManager();
+// 			$em->persist($task);
+// 			$em->flush();
+			
+// 			return $this->redirect($this->generateUrl('task_detail', ['id' => $task->getId()]));
+// 		}
+		
+// 		return $this->render('task/creation.html.twig',[
+// 			'edit' => true,
+// 			'form' => $form->createView()
+// 		]);
+// 	}
+	
+// 	public function delete(UserInterface $user, Task $task){
+// 		if(!$user || $user->getId() != $task->getUser()->getId()){
+// 			return $this->redirectToRoute('tasks');
+// 		}
+		
+// 		if(!$task){
+// 			return $this->redirectToRout('tasks');
+// 		}
+		
+// 		$em = $this->getDoctrine()->getManager();
+// 		$em->remove($task);
+// 		$em->flush();
+		
+// 		return $this->redirectToRoute('tasks');
+// 	}
 }

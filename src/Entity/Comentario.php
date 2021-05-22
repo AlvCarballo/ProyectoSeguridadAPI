@@ -43,14 +43,14 @@ class Comentario
     private $copagina;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="coCreated_at", type="datetime", nullable=true)
      */
     private $cocreatedAt;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="coDelete_at", type="datetime", nullable=true)
      */
