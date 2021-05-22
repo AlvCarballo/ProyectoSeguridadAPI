@@ -30,6 +30,17 @@ class ComentarioController extends AbstractController
             'comentarios' => $comentarios,
         ]);
     }
+    public function indexuser(): Response
+    {
+        //Prueba de entidades y relaciones
+        $em = $this->getDoctrine()->getManager();
+       
+        $comentario_repo = $this->getDoctrine()->getRepository(Comentario::class);
+        $comentarios = $comentario_repo->findAll();
+        return $this->render('comentario/indexuser.html.twig', [
+            'comentarios' => $comentarios,
+        ]);
+    }
     public function listarUsuariosComentarios(){
         $em = $this->getDoctrine()->getManager();
         $usuario_repo = $this->getDoctrine()->getRepository(Usuario::class);

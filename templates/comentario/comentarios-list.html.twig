@@ -22,10 +22,10 @@
                 <a href="{{ path('Comentario_detail', {'coid':comentario.coid}) }}" class="btn-show">Ver</a>
 
                 <!-- Solo ponemos los siguientes botones si el id del usuario coincide con el id asociado al comentario -->
-                {% if app.user != null and comentario.coidusuariofk.uId == app.user.uId %}
+                 {% if app.user != null and comentario.coidusuariofk.uId == app.user.uId %}
                     <a href="" class="btn-edit">Editar</a>
                     <a href="" class="btn-delete">Borrar</a>
-                {% endif %}
+                {% endif %} 
                 
             </td>
         </tr>
@@ -33,5 +33,5 @@
 
 </table>
 {% else %}
-    <strong>No hay tareas disponibles en este momento</strong>
+    <strong>No hay comentarios disponibles en este momento</strong>
 {% endif %}
