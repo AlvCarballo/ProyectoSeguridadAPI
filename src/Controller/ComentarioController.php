@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Comentario; //Usamos la entidad Comentario
 use App\Entity\Usuario; //Usamos la entidad Usuario
+//Usar request http fundation
+use Symfony\Component\HttpFoundation\Request;
+
 
 class ComentarioController extends AbstractController
 {
@@ -39,6 +42,20 @@ class ComentarioController extends AbstractController
         $comentarios = $comentario_repo->findAll();
         return $this->render('comentario/indexuser.html.twig', [
             'comentarios' => $comentarios,
+        ]);
+    }
+    public function indexpagina(Request $request, string $copagina = null)
+    {
+        $var=$request->query->get("copagina");
+        // var_dump("GET:".$copagina);
+        
+        //Prueba de entidades y relaciones
+        $em = $this->getDoctrine()->getManager();
+       
+        $comentario_repo = $this->getDoctrine()->getRepository(Comentario::class);
+        $comentarios = $comentario_repo->findAll();
+        return $this->render('comentario/indexpagina.html.twig', [
+            'comentarios' => $comentarios, 'copagina' => $copagina,
         ]);
     }
     public function listarUsuariosComentarios(){

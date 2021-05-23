@@ -20,7 +20,7 @@
                 <ul id="menu">
                     {% if app.user %}
                         <li><a href="{{path('Comentario')}}">Inicio</a></li>
-                        {# <li><a href="{{path('Comentario')}}">Comentarios</a></li> #}
+                        {# <li><a href="{{path('ComentarioPagina')}}">Comentarios Paginas</a></li> #}
                         <li><a href="{{path('Comentario_user')}}">{{ app.user.unombre ~ ' ' ~ app.user.uapellidos }}</a></li>
                         <li class="rojo"><a href="{{ path('Logout') }}">Cerrar sesión</a></li>
                     {% else %}

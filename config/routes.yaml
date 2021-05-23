@@ -10,6 +10,11 @@ Comentario_user:
   path: /comentariouser
   controller: App\Controller\ComentarioController::indexuser
 
+ComentarioPagina:
+  path: /comentariopagina/{copagina}
+  controller: App\Controller\ComentarioController::indexpagina
+
+
 Comentario_detail:
   path: /comentario/{coid}
   controller: App\Controller\ComentarioController::detail

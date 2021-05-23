@@ -3,7 +3,8 @@
 <table>
     <tr>
         <th>Titulo Comentario</th>
-        <th>Pagina</th>
+        {# <th>Pagina</th> #}
+        <th>Autor</th>
         <th>Fecha del comentario</th>
         <th>Acciones</th>
     </tr>
@@ -12,7 +13,8 @@
     {% for comentario in comentarios %}
         <tr>
             <td>{{ comentario.cotitle }}</td>
-            <td>{{ comentario.copagina }}</td>
+            {# <td>{{ comentario.copagina }}</td> #}
+            <td>{{comentario.Coidusuariofk.Unombre }}</td>
 
             <!-- Ponemos formato a la fecha -->
             <td>{{ comentario.cocreatedAt | date("d/m/Y h:m:s") }}</td>
